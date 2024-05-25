@@ -23,13 +23,12 @@ const createAuthor = (payload) => new Promise((resolve, reject) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(payload),
-  })
+  }
     .then((response) => response.json())
     .then((data) => resolve(data))
-    .catch(reject);
-});
-  
-// FIXME: GET SINGLE AUTHOR
+    .catch(reject)
+);
+// FIXME:GET SINGLE AUTHOR
 const getSingleAuthor = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/authors/${firebaseKey}.json`, {
     method: 'GET',
@@ -79,4 +78,4 @@ export {
   deleteSingleAuthor,
   updateAuthor,
   getAuthorBooks,
-};
+}
