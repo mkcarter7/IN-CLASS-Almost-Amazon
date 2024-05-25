@@ -18,6 +18,9 @@ const domEvents = () => {
     if (e.target.id.includes('edit-book-btn')) {
       console.warn('EDIT BOOK', e.target.id);
       console.warn(e.target.id.split('--'));
+
+      getSingleBook(firebaseKey).then((bookObj) => addBookForm(bookObj));
+      }
     }
     // TODO: CLICK EVENT FOR VIEW BOOK DETAILS
     if (e.target.id.includes('view-book-btn')) {
