@@ -32,11 +32,15 @@ const domEvents = () => {
     }
 
     // FIXME: ADD CLICK EVENT FOR DELETING AN AUTHOR
-    if (e.target.id.includes('delete-author-btn')) {
+    if (e.target.id.includes('delete-author')) {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
-        console.warn('DELETE AUTHOR', e.target.id);
-        console.warn(e.target.id.split('--'));
+        console.warn('CLICKED DELETE AUTHOR', e.target.id);
+        const [, firebaseKey] = e.target.id.split('--');
+    
+        deleteAuthor(firebaseKey).then(() => {
+          getAuthor().then(showAuthor);
+        });
       }
     }
 
