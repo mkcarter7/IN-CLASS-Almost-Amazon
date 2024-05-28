@@ -26,11 +26,11 @@ const domEvents = () => {
       }
     }
     // TODO: CLICK EVENT FOR VIEW BOOK DETAILS
-   if (e.target.id.includes('view-book-btn')) {
-      console.warn('VIEW BOOK', e.target.id);
-      console.warn(e.target.id.split('--'));
+    if (e.target.id.includes('view-book-btn')) {
+      const [, firebaseKey] = e.target.id.split('--');
+    
+      getBookDetails(firebaseKey).then(viewBook);
     }
-
     // FIXME: ADD CLICK EVENT FOR DELETING AN AUTHOR
     if (e.target.id.includes('delete-author')) {
       // eslint-disable-next-line no-alert
