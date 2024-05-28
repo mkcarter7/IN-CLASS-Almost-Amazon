@@ -1,5 +1,12 @@
 import client from '../utils/client';
-
+export {
+  getAuthors,
+  createAuthor,
+  getSingleAuthor,
+  deleteSingleAuthor,
+  updateAuthor,
+  getAuthorBooks,
+}
 const endpoint = client.databaseURL;
 
 // FIXME:  GET ALL AUTHORS
@@ -70,12 +77,3 @@ const updateAuthor = (payload) => new Promise((resolve, reject) => {
 
 // TODO: GET A SINGLE AUTHOR'S BOOKS
 const getAuthorBooks = () => {};
-
-export {
-  getAuthors,
-  createAuthor,
-  getSingleAuthor,
-  deleteSingleAuthor,
-  updateAuthor,
-  getAuthorBooks,
-}
