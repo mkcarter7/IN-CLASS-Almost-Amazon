@@ -1,12 +1,5 @@
 import client from '../utils/client';
-export {
-  getAuthors,
-  createAuthor,
-  getSingleAuthor,
-  deleteSingleAuthor,
-  updateAuthor,
-  getAuthorBooks,
-}
+
 const endpoint = client.databaseURL;
 
 // FIXME:  GET ALL AUTHORS
@@ -33,8 +26,9 @@ const createAuthor = (payload) => new Promise((resolve, reject) => {
   }
     .then((response) => response.json())
     .then((data) => resolve(data))
-    .catch(reject)
-);
+    .catch(reject));
+});
+
 // FIXME:GET SINGLE AUTHOR
 const getSingleAuthor = (firebaseKey) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/authors/${firebaseKey}.json`, {
@@ -76,14 +70,26 @@ const updateAuthor = (payload) => new Promise((resolve, reject) => {
 });
 
 // TODO: GET A SINGLE AUTHOR'S BOOKS
-const getSingleAuthor = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/authors/${firebaseKey}.json`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    }, // you technically do not need the options object for GET requests, but using it here for consistency
-  })
+const getAuthorBooks = (firebaseKey) => new Promise((resolve, reject) => {
+  fetch(
+    `${endpoint}/books.json?orderBy="author_id"&equalTo="${firebaseKey}"`,
+    {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  )
     .then((response) => response.json())
-    .then((data) => resolve(data)) // will resolve a single object
+    .then((data) => resolve(Object.values(data)))
     .catch(reject);
 });
+
+export {
+  getAuthors,
+  createAuthor,
+  getSingleAuthor,
+  deleteSingleAuthor,
+  updateAuthor,
+  getAuthorBooks,
+};

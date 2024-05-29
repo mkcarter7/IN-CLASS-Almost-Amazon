@@ -1,3 +1,10 @@
+import { deleteBook, getBooks, getSingleBook } from '../api/bookData';
+import { getBookDetails } from '../api/mergedData';
+import addBookForm from '../components/forms/addBookForm';
+import { showBooks } from '../pages/books';
+import viewBook from '../pages/viewBook';
+// import viewBook from '../pages/viewBook';
+
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
     // TODO: CLICK EVENT FOR DELETING A BOOK
@@ -6,7 +13,7 @@ const domEvents = () => {
       if (window.confirm('Want to delete?')) {
         console.warn('CLICKED DELETE BOOK', e.target.id);
         const [, firebaseKey] = e.target.id.split('--');
-    
+
         deleteBook(firebaseKey).then(() => {
           getBooks().then(showBooks);
         });
@@ -21,14 +28,14 @@ const domEvents = () => {
     if (e.target.id.includes('edit-book-btn')) {
       console.warn('EDIT BOOK', e.target.id);
       console.warn(e.target.id.split('--'));
-
+      const [, firebaseKey] = e.target.id.split('--');
       getSingleBook(firebaseKey).then((bookObj) => addBookForm(bookObj));
-      }
     }
+
     // TODO: CLICK EVENT FOR VIEW BOOK DETAILS
     if (e.target.id.includes('view-book-btn')) {
       const [, firebaseKey] = e.target.id.split('--');
-    
+
       getBookDetails(firebaseKey).then(viewBook);
     }
     // FIXME: ADD CLICK EVENT FOR DELETING AN AUTHOR
@@ -36,11 +43,11 @@ const domEvents = () => {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
         console.warn('CLICKED DELETE AUTHOR', e.target.id);
-        const [, firebaseKey] = e.target.id.split('--');
-    
-        deleteAuthor(firebaseKey).then(() => {
-          getAuthor().then(showAuthor);
-        });
+        // const [, firebaseKey] = e.target.id.split('--');
+
+        // deleteAuthor(firebaseKey).then(() => {
+        //   getAuthor().then(showAuthor);
+        // });
       }
     }
 
@@ -48,6 +55,7 @@ const domEvents = () => {
     if (e.target.id.includes('add-author-btn')) {
       console.warn('ADD AUTHOR');
     }
-    // FIXME: ADD CLICK EVENT FOR EDITING AN AUTHOR
- 
+  });
+  // FIXME: ADD CLICK EVENT FOR EDITING AN AUTHOR
+};
 export default domEvents;
