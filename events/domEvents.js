@@ -43,11 +43,6 @@ const domEvents = () => {
       // eslint-disable-next-line no-alert
       if (window.confirm('Want to delete?')) {
         console.warn('CLICKED DELETE AUTHOR', e.target.id);
-        // const [, firebaseKey] = e.target.id.split('--');
-
-        // deleteAuthor(firebaseKey).then(() => {
-        //   getAuthor().then(showAuthor);
-        // });
       }
     }
 
