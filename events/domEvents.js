@@ -52,5 +52,13 @@ const domEvents = () => {
     }
   });
   // FIXME: ADD CLICK EVENT FOR EDITING AN AUTHOR
+  //   if (e.target.id.includes('delete-author-btn')) {
+  //   // eslint-disable-next-line no-alert
+  //     if (window.confirm('Want to delete?')) {
+  //       const [, firebaseKey] = e.target.id.split('--');
+
+//       deleteAuthorBooksRelationship(firebaseKey).then(() => {
+//         getAuthors().then(showAuthors);
+//       });
 };
 export default domEvents;
