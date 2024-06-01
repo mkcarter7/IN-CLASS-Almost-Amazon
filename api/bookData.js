@@ -1,10 +1,12 @@
+/* eslint-disable no-unused-vars */
 import client from '../utils/client';
 // API CALLS FOR BOOKS
 
 const endpoint = client.databaseURL;
 
 // TODO: GET BOOKS
-const getBooks = () => new Promise((resolve, reject) => {
+// eslint-disable-next-line no-unused-vars
+const getBooks = (_uid) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/books.json`, {
     method: 'GET',
     headers: {
@@ -71,7 +73,7 @@ const updateBook = (payload) => new Promise((resolve, reject) => {
 });
 
 // TODO: FILTER BOOKS ON SALE
-const booksOnSale = () => new Promise((resolve, reject) => {
+const booksOnSale = (_uid) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/books.json?orderBy="sale"&equalTo=true`, {
     method: 'GET',
     headers: {
